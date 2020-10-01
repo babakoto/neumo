@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
 
-class Neumo extends StatelessWidget {
+class NeumoAnimated extends StatelessWidget {
+  final Curve curve;
+  final Duration duration;
   final double height;
   final double width;
   final Color color;
@@ -15,20 +17,21 @@ class Neumo extends StatelessWidget {
   final int depth;
   final bool emboss;
 
-  Neumo(
-      {
-      this.child,
-      this.height,
-      this.width,
-      this.color,
-      this.surfaceColor,
-      this.parentColor,
-      this.spread,
-      this.borderRadius,
-      this.customBorderRadius,
-      this.curveType,
-      this.depth,
-      this.emboss});
+  NeumoAnimated(
+      {this.duration,
+        this.curve,
+        this.child,
+        this.height,
+        this.width,
+        this.color,
+        this.surfaceColor,
+        this.parentColor,
+        this.spread,
+        this.borderRadius,
+        this.customBorderRadius,
+        this.curveType,
+        this.depth,
+        this.emboss});
 
   Color _getAdjustColor(Color baseColor, amount) {
     Map colors = {
@@ -72,9 +75,9 @@ class Neumo extends StatelessWidget {
     final int depthValue = depth == null ? 20 : depth;
     Color colorValue = color == null ? Color(0xFFf0f0f0) : color;
     final Color parentColorValue =
-        parentColor == null ? colorValue : parentColor;
+    parentColor == null ? colorValue : parentColor;
     final Color surfaceColorValue =
-        surfaceColor == null ? colorValue : surfaceColor;
+    surfaceColor == null ? colorValue : surfaceColor;
     final double spreadValue = spread == null ? 6 : spread;
     final bool embossValue = emboss == null ? false : emboss;
     BorderRadius borderRadiusValue = borderRadius == null
@@ -85,7 +88,7 @@ class Neumo extends StatelessWidget {
       borderRadiusValue = customBorderRadius;
     }
     final CurveType curveTypeValue =
-        curveType == null ? CurveType.none : curveType;
+    curveType == null ? CurveType.none : curveType;
 
     List<BoxShadow> shadowList = [
       BoxShadow(
@@ -118,7 +121,9 @@ class Neumo extends StatelessWidget {
         break;
     }
 
-    return Container(
+    return AnimatedContainer(
+      duration: this.duration??Duration(seconds: 1),
+      curve: this.curve?? Curves.linear,
       height: heightValue,
       width: widthValue,
       child: child,

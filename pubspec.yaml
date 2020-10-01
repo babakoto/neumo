@@ -1,8 +1,8 @@
 name: neumo
-description: A new Flutter package.
+description: Easily create ui neumorphic widgets.
 version: 0.0.1
-author:
-homepage:
+author: e.tokiniaina@gmail.com
+homepage: https://github.com/babakoto/neumo.git
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
